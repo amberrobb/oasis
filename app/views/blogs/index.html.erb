@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Blogs</h1>
+
+<table>
+<% @blogs.each do |blog| %>
+  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+    <td>
+      <%= image_tag(blog.image_url, class: 'list_image') %>
+    </td>
+    <td class="list_description">
+      <dl>
+        <dt><%= blog.title %></dt>
+        <dd><%= truncate(strip_tags(blog.blog_entry), length: 180) %></dd>
+        <dd><%= blog.author %></dd>
+        <dd><%= blog.made.to_date() %></dd>
+      </dl>
+    </td>
+    <td class="list_actions">
+      <%= link_to 'Show', blog %><br/>
+      <%= link_to 'Edit', edit_blog_path(blog) %><br/>
+      <%= link_to 'Destroy', blog, method: :delete, data: {confirm: "Are you sure?"} %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br>
+
+<%= link_to 'New Blog', new_blog_path %>
