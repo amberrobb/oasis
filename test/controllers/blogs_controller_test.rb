@@ -3,6 +3,12 @@ require 'test_helper'
 class BlogsControllerTest < ActionController::TestCase
   setup do
     @blog = blogs(:one)
+    @update = {
+      title: 'Lorem Ipsum',
+      blog_entry: 'Wibbles are fun!',
+      image_url: 'image.jpg',
+      author: 'robb'
+      }
   end
 
   test "should get index" do
@@ -18,7 +24,7 @@ class BlogsControllerTest < ActionController::TestCase
 
   test "should create blog" do
     assert_difference('Blog.count') do
-      post :create, blog: { author: @blog.author, blog_entry: @blog.blog_entry, image_url: @blog.image_url, made: @blog.made, title: @blog.title }
+      post :create, blog: @update
     end
 
     assert_redirected_to blog_path(assigns(:blog))
@@ -35,7 +41,7 @@ class BlogsControllerTest < ActionController::TestCase
   end
 
   test "should update blog" do
-    patch :update, id: @blog, blog: { author: @blog.author, blog_entry: @blog.blog_entry, image_url: @blog.image_url, made: @blog.made, title: @blog.title }
+    patch :update, id: @blog, blog: @update
     assert_redirected_to blog_path(assigns(:blog))
   end
 

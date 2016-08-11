@@ -13,7 +13,7 @@
         <dt><%= blog.title %></dt>
         <dd><%= truncate(strip_tags(blog.blog_entry), length: 180) %></dd>
         <dd><%= blog.author %></dd>
-        <dd><%= blog.made.to_date() %></dd>
+        <dd><%= blog.made.to_date() %></dd> <%# to_date() = transforming datetime to date %>
       </dl>
     </td>
     <td class="list_actions">
